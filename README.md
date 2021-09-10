@@ -1,38 +1,10 @@
-<p align="center"><img src="https://i.imgur.com/a9QWW0v.png"></p>
+# Marknotes
 
-## Usage
+Write and share your markdown notes easily
 
-### Create an App
+## Features
 
-```
-# with npx
-$ npx create-nextron-app my-app --example with-typescript-tailwindcss
-
-# with yarn
-$ yarn create nextron-app my-app --example with-typescript-tailwindcss
-
-# with pnpx
-$ pnpx create-nextron-app my-app --example with-typescript-tailwindcss
-```
-
-### Install Dependencies
-
-```
-$ cd my-app
-
-# using yarn or npm
-$ yarn (or `npm install`)
-
-# using pnpm
-$ pnpm install --shamefully-hoist
-```
-
-### Use it
-
-```
-# development mode
-$ yarn dev (or `npm run dev` or `pnpm run dev`)
-
-# production build
-$ yarn build (or `npm run build` or `pnpm run build`)
-```
+-   No Internet needed
+-   Desktop application using Electron.js
+-   Auto save note changes
+-   Share your notes using a unique URL
