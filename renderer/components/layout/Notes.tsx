@@ -1,14 +1,15 @@
-import { useNotes } from "../../context/NotesContext";
+import { useSnapshot } from "valtio";
+import { state } from "../../store/store";
 import Container from "./Container";
 
 const Notes = () => {
-	const { notes, changeNote } = useNotes();
+	const { notes, updateNote } = useSnapshot(state);
 
 	return (
 		<Container w="1/5">
 			{notes?.length &&
 				notes.map((note, i) => (
-					<p key={i} onClick={() => changeNote(note)}>
+					<p key={i} onClick={() => updateNote(note)}>
 						{note.data.title}
 					</p>
 				))}

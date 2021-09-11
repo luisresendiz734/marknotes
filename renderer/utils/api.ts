@@ -1,6 +1,8 @@
-import { readdirSync, readFileSync } from "fs";
+import { readdirSync, readFileSync, writeFileSync } from "fs";
 import matter from "gray-matter";
 import path from "path";
+import { subscribe } from "valtio";
+import { state } from "../store/store";
 
 const dir = "C:\\Users\\luis\\.notable\\notes";
 
@@ -49,4 +51,18 @@ export const getFolderNames = () => {
      }
      
      return ["All", ...Array.from(folders)];
+}
+
+export const saveNote = () => {
+    console.log("saveNote")
+    const unsubscribe = subscribe(state, () => {
+        console.log("savingNote");
+        let note = "---\ntags: [";
+        state.note.data.tags.forEach(tag => { note += tag + ", "});
+        let note2 = note.slice(0, -2);
+        note2 += "]\ntitle: " + state.note.data.title + "\ncreated_at: '" + state.note.data.created_at + "'\nupdated_at: '" + state.note.data.updated_at + "'\n---\n";
+        let note3 = note2 + state.note.content;
+        writeFileSync(path.join(dir, `${state.note.data.title}.md`), note3, { encoding: "utf-8" });
+    })
+    
 }

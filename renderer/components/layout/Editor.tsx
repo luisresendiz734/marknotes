@@ -1,11 +1,29 @@
-import { useNotes } from "../../context/NotesContext";
+import { useState } from "react";
+import { useSnapshot } from "valtio";
+import { state } from "../../store/store";
+import TextEditor from "../TextEditor";
 import Container from "./Container";
 
 const Editor = () => {
-	const { note } = useNotes();
+	const { note } = useSnapshot(state);
+	const [isEditing, setIsEditing] = useState(false);
+
+	const toggleEditing = () => {
+		setIsEditing((state) => !state);
+	};
+
 	return (
 		<Container w="3/5">
-			<pre>{note && note.content}</pre>
+			{note && (
+				<button onClick={toggleEditing}>
+					{isEditing ? "view" : "edit"}
+				</button>
+			)}
+			{isEditing ? (
+				<TextEditor content={note.content} />
+			) : (
+				<pre>{note && note.content}</pre>
+			)}
 		</Container>
 	);
 };

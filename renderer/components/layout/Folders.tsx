@@ -1,13 +1,14 @@
-import { useNotes } from "../../context/NotesContext";
+import { useSnapshot } from "valtio";
+import { state } from "../../store/store";
 import Container from "./Container";
 
 const Folders = () => {
-	const { folders, changeFolder } = useNotes();
+	const { folders, updateFolder } = useSnapshot(state);
 
 	return (
 		<Container w="1/5">
 			{folders.map((folder, i) => (
-				<p key={i} onClick={() => changeFolder(folder)}>
+				<p key={i} onClick={() => updateFolder(folder)}>
 					{folder}
 				</p>
 			))}
